@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Listado de lectores por blog</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+</head>
+<body>
+	<div th:replace="fragments :: header"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="row">
+				<form th:action="@{/app/blogsReaders}" th:object="${brDto}" method="POST">
+					<div class="card text-dark bg-light mb-3"
+						style="max-width: 60rem; margin: 0 auto;">
+						<div class="card-header">
+							<h3>Registro de Nuevo Blog</h3>
+						</div>
+						<div class="card-body">
+
+							<div class="row mb-3">
+								<label class="col-sm-3 col-form-label">Blog: </label>
+								<div class="col-sm-9">
+									<select class="form-control" id="cbBlogs" th:field="*{blogId}"
+										required>
+										<option value="0">Seleccione un Blog</option>
+										<option th:each="blog : ${allBlogs}" th:value="${blog.id}"
+											th:text="${blog}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<label class="col-sm-3 col-form-label">Reader: </label>
+								<div class="col-sm-9">
+									<select class="form-control" id="cbReaders"
+										th:field="*{readerId}" required>
+										<option value="0">Seleccione un Reader</option>
+										<option th:each="reader : ${allReaders}"
+											th:value="${reader.id}" th:text="${reader}"></option>
+									</select>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="card-footer">
+							<button class="btn btn-success">Guardar</button>
+							<a href="/app/blogsReaders" class="btn btn-success">Cancelar</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

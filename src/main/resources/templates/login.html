@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Demo App</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="css/login.css"></style>
+</head>
+<body style="background-color: #2f3745;">
+	
+	
+
+	<div class="wrapper fadeInDown">
+		<div id="formContent">
+			<!-- Tabs Titles -->
+
+			<!-- Icon -->
+			<div class="fadeIn first">
+				<img th:src="@{/images/bandesal.png}" style="width: 100px;margin-top: 50px;" id="icon" alt="User Icon" />
+			</div>
+
+			<!-- Login Form -->
+			<form th:action="@{/login}" method="post">		
+				<input type="text" id="login" class="fadeIn second" name="username" placeholder="Usuario" />
+				<input type="text" id="password" class="fadeIn third" name="password" placeholder="Clave de acceso" />
+				<input type="submit" class="fadeIn fourth" value="Ingresar">
+			</form>
+
+			<!-- Remind Passowrd -->
+			<div id="formFooter">
+				<div th:if="${param.error}">
+					<div class="alert alert-danger">
+						<span>El usuario o contraseña no es válida</span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
